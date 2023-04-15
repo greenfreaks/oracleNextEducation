@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<script>
+    function saltarLinea () {
+        document.write("<br>");
+        document.write("<br>");
+        document.write("<br>");
+    }
+
+    function imprimir (frase){
+        document.write(frase);
+        saltarLinea();
+    }
+
+    let contadorMiembros = 1;
+    let numeroMiembros = parseInt(prompt("Ingresa el número de familiares que tienes"));
+    let edadAcumulada = 0
+    let edad = 0;
+    
+
+    for(contadorMiembros = 1; contadorMiembros <= numeroMiembros; contadorMiembros ++){
+        edad = parseInt(prompt("Ingrese la edad del familiar número" + " " + contadorMiembros));
+        edadAcumulada = edad + edad;
+    }
+    imprimir("La suma total de la edad de tus familiares es: " + edadAcumulada);
+    imprimir("La media total de la edad de tus familiares es: " + edadAcumulada/numeroMiembros);
+
+</script>
