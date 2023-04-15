@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+<h1>Estrellas - Repeticiones Anidadas </h1>
+<script>
+    function saltarLinea() {
+        document.write("<br>");    
+        document.write("<br>");    
+        document.write("<br>");    
+    }  
+    function imprimir(frase) {
+        document.write(frase);
+        saltarLinea();
+    }
+
+    let lineasUsuario = parseInt(prompt("Ingrese la cantidad de líneas"));
+    let columnasUsuario = parseInt(prompt("Ingrese la cantidad de columnas"))
+
+    // En esta primera iteración imprimimos el número de líneas || Decimos "¿Cántas veces quieres repetir la acción dentro de este for?"
+    for(var lineas = 1; lineas<=lineasUsuario; lineas++){
+        // En esta segunda iteración imprimimos la cantitad de números al azar dada por el usuario de manera consecutiva (Horizontal)
+        for(var columnas = 1; columnas <= columnasUsuario; columnas ++){
+            document.write(" " + Math.round(Math.random() * 10) + " ");
+        }
+        saltarLinea(); // Cada que se hace una iteración de la primer instrucción del FOR, se hace un salto de línea, esto para lograr imprimir de manera vertical la siguiente línea
+    }
+
+    imprimir("fin")
+</script> 
