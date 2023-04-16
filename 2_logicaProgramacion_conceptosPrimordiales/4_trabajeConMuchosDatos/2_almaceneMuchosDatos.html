@@ -1,0 +1,30 @@
+<meta charset="utf-8">
+<input id="" type="text">
+<button>Verificar si acertó con el secreto</button>
+<script>
+    var secreto = [3, 5, 7, 9];
+    var input = document.querySelector("input")
+    input.focus();
+
+    function verificar() {
+        let encontrado = false //Variable que nos ayudará a detener el programa
+
+        //Este for recorre el arreglo valor por valor ||arreglo.lenght cuenta cuántos valores hay dentro del arreglo
+        for (var posicionArreglo = 0; posicionArreglo < secreto.length; posicionArreglo++) {
+            if (parseInt(input.value) == secreto[posicionArreglo]) { //Comprobamos si el valor ingresado al input corresponde a alguno de los valores del arreglo
+                alert("Usted acertó");
+                encontrado = true; //Cambiamos el valor de la variable por TRUE, mientras el valor sea FALSE, el programa continuará recorriendo el array
+                break; // Si no ponemos el BREAK, aunque pongamos el valor correcto, el FOR va a continuar recorriendo el ARRAY (aunque no lo notemos), y esto en un array grande nos va a hacer lento el programa, pero con el BREAK vamos  a detener la iteración una vez que acertemos el valor correcto
+            }
+        }
+        if (encontrado == false) { //Mientras el valor sea FALSE el programa va a lanzar un mensaje de error y voler a dejar al usaurio ingresar otro valor
+            alert("Usted Erró")
+            input.value = "";
+            input.focus();
+        }
+
+    }
+
+    var button = document.querySelector("button");
+    button.onclick = verificar;
+</script>
