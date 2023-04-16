@@ -1,0 +1,59 @@
+<meta charset="utf-8">
+<input id="" type="text">
+<button>Verificar si acertó con el secreto</button>
+<script>
+    //Función para generar y devolver números aleatorios
+    function aleatorio() {
+        return Math.round(Math.random() * 10);
+    }
+
+    //La siguiente función nos permitirá llenar un array de manera automática
+    function sortearNumeros(cantidad) {
+        let secretos = []; //inicializamos la variable SECRETOS como un array vacío
+        let contador = 1
+        while (contador <= cantidad) {
+            numeroAleatorio = aleatorio();
+            secretos.push(numeroAleatorio); //Añadimos un valor extra al array
+            contador++;
+        }
+        return secretos;
+    }
+    let secretos = sortearNumeros(4);
+    console.log(secretos);
+    //Todas las acciones de aquí abajo, las realizamos con la función de arriba
+
+    // var secretos = sortearNumeros(4);
+    // secretos.push(aleatorio()); //array.push: sirve para agregar un valor más al final del array
+    // secretos.push(aleatorio());
+    // secretos.push(aleatorio());
+    // secretos.push(aleatorio());
+
+
+    var input = document.querySelector("input")
+    input.focus();
+
+    function verificar() {
+        let encontrado = false
+
+
+        for (var posicionArreglo = 0; posicionArreglo < secretos.length; posicionArreglo++) {
+            if (parseInt(input.value) == secretos[
+                    posicionArreglo]) {
+                alert("Usted acertó");
+                input.value = "";
+                input.focus();
+                encontrado = true;
+                break;
+            }
+        }
+        if (encontrado == false) {
+            alert("Usted Erró")
+            input.value = "";
+            input.focus();
+        }
+
+    }
+
+    var button = document.querySelector("button");
+    button.onclick = verificar;
+</script>

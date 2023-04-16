@@ -1,0 +1,61 @@
+<meta charset="utf-8">
+<input id="" type="text">
+<button>Verificar si acertó con el secreto</button>
+<script>
+    //Función para generar e imprimir números aleatorios
+    function aleatorio() {
+        return Math.round(Math.random() * 10);
+    }
+
+    //Función para asignar valores al array automáticamente
+    function sortearNumeros(cantidad) {
+        let secretos = [];
+        let contador = 1
+        while (contador <= cantidad) {
+            let numeroAleatorio = aleatorio();
+            console.log(numeroAleatorio)
+            let encontrado = false
+            for (posicion = 0; posicion < secretos.length; posicion++) { //recorremos el array uno por uno
+                if (numeroAleatorio == secretos[posicion]) { // verificamos si numeroAleatorio tiene un valor igual a algún valor del array SECRETOS
+                    encontrado = true; // Si econtramos un valor igual, el valor de la variable ENCONTRADO es igual a TRUE, y mientras TRUE sea el valor, el ciclo FOR se continuará repitiendo || Va continuar agregando generando números, pero no los va a insertar mientras estos ya existan dentro del ARRAY
+                }
+            }
+            if (encontrado == false) {
+                secretos.push(numeroAleatorio); // Mientras el valor de ENCONTRADO sea FALSE, nuestra función continuará agregando valores al array (hasta que llene la cantidad de valores que nosotros asignamos)
+                contador++; // Sólo se contabiliza sólo si encosntrado es FALSE
+            }
+
+        }
+        return secretos;
+    }
+    let secretos = sortearNumeros(4);
+    console.log(secretos);
+
+    var input = document.querySelector("input")
+    input.focus();
+
+    function verificar() {
+        let encontrado = false
+
+
+        for (var posicionArreglo = 0; posicionArreglo < secretos.length; posicionArreglo++) {
+            if (parseInt(input.value) == secretos[
+                    posicionArreglo]) {
+                alert("Usted acertó");
+                input.value = "";
+                input.focus();
+                encontrado = true;
+                break;
+            }
+        }
+        if (encontrado == false) {
+            alert("Usted Erró")
+            input.value = "";
+            input.focus();
+        }
+
+    }
+
+    var button = document.querySelector("button");
+    button.onclick = verificar;
+</script>
