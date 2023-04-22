@@ -1,0 +1,28 @@
+<meta charset="utf-8">
+
+<canvas width="600" height="400"></canvas> <!-- Es una etiqueta que nos servirá como pizarra para trazar gráficos, illustraciones, etc -->
+<script>
+    let pantalla = document.querySelector("canvas");
+    let pincel = pantalla.getContext("2d");
+
+    /*
+        *La función fillRect() sirve para dibujar un rectángulo en nusetro canvas, fillRect() requiere de 4 parámetros
+        *fillRect(posicionX, posicionY, widht, height), fillRect() ES UNA FUNCIÓN, por eso recibe parámetros
+        *fillStyle, a diferencia de fillRect(), esta es una propiedad, y NO RECIBE PARÁMETROS, recibe un valor, en este caso un color
+        *Con las siguientes líneas vamos a rellenar de color gris nuestro CANVAS    
+    */
+    pincel.fillStyle = "lightgrey"; //propiedad
+    pincel.fillRect(0, 0 , 600, 400); // función || desde la posición X = 0 y Y = 0 de nuestro Canvas estamos pintando un rectángulo de color gris del mismo tamaño del canvas (lo estamos cubriendo
+
+    /*
+        *Crearemos una bandera
+        *Podemos encimar elementos
+    */
+    pincel.fillStyle = "green";
+    pincel.fillRect(0, 0, 200, 400);
+
+    pincel.fillStyle = "red";
+    pincel.fillRect(400, 0, 200, 400);
+
+
+</script>

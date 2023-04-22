@@ -1,0 +1,32 @@
+<meta charset="utf-8">
+
+<canvas width="600" height="400"></canvas> <!-- Es una etiqueta que nos servirá como pizarra para trazar gráficos, illustraciones, etc -->
+<script>
+    let pantalla = document.querySelector("canvas");
+    let pincel = pantalla.getContext("2d");
+
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 0 , 600, 400);
+
+    pincel.fillStyle = "green";
+    pincel.fillRect(0, 0, 200, 400);
+
+    pincel.fillStyle = "red";
+    pincel.fillRect(400, 0, 200, 400);
+
+    //Dibuajamos un escudo para la bandera
+
+    //Triángulo
+    pincel.fillStyle = "yellow";
+    pincel.beginPath(); //comenzamos un nuevo camino (como si nuestro pincel comienza a bajar a través de nuestro Canvas siguiento instrucciones como si fuera un mapa)
+    pincel.moveTo(300, 200); // Nos posicionamos || moveTo(posicionX, posicionY)
+    pincel.lineTo(200, 400); // Dibujamos una línea || lineTo(posicionX, posicionY)
+    pincel.lineTo(400, 400);
+    pincel.fill(); // Llenamos el trazado que acabamos de crear || Le hace caso al primer begginPath() que está arriba de este fill/()
+
+    pincel.fillStyle = "blue";
+    pincel.beginPath();
+    pincel.arc(300, 200, 50, 0, 2 * 3.14) // Graficar circunferencias || arc(posicionX, posicionY, radio, anguloInicial, anguloFinal)
+    pincel.fill();
+
+</script>
