@@ -1,0 +1,45 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    let pantalla = document.querySelector("canvas");
+    let pincel = pantalla.getContext("2d");
+
+    pincel.fillStyle = "lightgray";
+    pincel.fillRect(0, 0, 600, 400);
+
+    function DibujarCirculo(x, y, radio, color) {
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x, y, radio, 0, 2 * 3.14);
+        pincel.fill();
+    }
+
+    // function DibujarFlor(x, y) {
+    //     DibujarCirculo(300, 200, 50, "red");
+    //     DibujarCirculo(300, 100, 50, "yellow");
+    //     DibujarCirculo(400, 200, 50, "black");
+    //     DibujarCirculo(200, 200, 50, "orange");
+    //     DibujarCirculo(300, 300, 50, "blue");
+    // }
+
+    // DibujarFlor();
+
+
+    /*
+        * EL código anterior funcionó pero imaginemos que queremos mover la flor hacia la derecha, tendríamos que cambiar todos los valores de nuevo
+        * Aquí encontramos un patrón, los circulos tienen 100px de distancia tanto como posició X como posición Y
+        * Lo que se puede hacer es tomar como base un valor definido para X y Y y a los valores de los otros circulos, podemos indicarle una suma o resta de 100px para X o para Y
+    */
+    function DibujarFlor(x, y) {
+        DibujarCirculo(x, y, 50, "red");
+        DibujarCirculo(x, y-100, 50, "yellow");
+        DibujarCirculo(x+100, y, 50, "black");
+        DibujarCirculo(x-100, y, 50, "orange");
+        DibujarCirculo(x, y+100, 50, "blue");
+    }
+    DibujarFlor(100, 200);
+    DibujarFlor(300, 200);
+    DibujarFlor(500, 200)
+
+   
+</script>

@@ -1,0 +1,47 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    function DibujarRectangulo(x, y, base, altura, color){
+        let pantalla = document.querySelector("canvas");
+        let pincel = pantalla.getContext("2d");
+
+        pincel.fillStyle = color;
+        pincel.fillRect(x, y, base, altura);
+        pincel.strokeStyle = "black";
+        pincel.strokeRect(x, y, base, altura);
+    }
+
+    function EscribirTexto(x, y, texto){
+        let pantalla = document.querySelector("canvas");
+        let pincel = pantalla.getContext("2d");
+
+        pincel.font = "15px Georgia";
+        pincel.fillStyle = "black";
+        pincel.fillText(texto, x, y);
+    }
+
+    function DibujarBarra(x, y, serie, colores, texto){
+        EscribirTexto(x, y -10, texto);
+        let sumaAltura = 0;
+        for(let i = 0; i < serie.length; i++){
+            let altura = serie[i];
+            DibujarRectangulo(x, y + sumaAltura, 50, altura, colores[i]);
+            sumaAltura = sumaAltura + altura;
+        }
+    }
+
+
+    //Definimos array de colores
+    let colores = ["blue", "green", "yellow", "red", "gray"];
+
+    // Dentro de un arreglo ponemos los valores de cada punto de la gráfica de ambos conceptos
+    let serie2009 = [6, 47, 41, 3, 3]; // Cada valor representa un porcentaje
+    let serie2019 = [81, 9, 3, 3, 4];
+
+    DibujarBarra(50, 50, serie2009, colores, "2009");
+    DibujarBarra(150, 50, serie2019, colores, "2019");
+
+
+   
+</script>
