@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+
+<canvas width="600" height="400"></canvas> <br>
+
+<!-- Es una etiqueta que nos servirá como pizarra para trazar gráficos, illustraciones, etc -->
+<script>
+    let pantalla = document.querySelector("canvas");
+    let pincel = pantalla.getContext("2d");
+
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0, 0, 600, 400);
+
+
+    function MostrarAlerta(evento) {
+
+        /* 
+         *parametro.pageX es una propiedad del MouseEvent para obtener la coordenada de X al hacer ejecutar el evento, lo mismo pasa con parametro.pageY pero para la coordenada Y
+         * Si ejecutamos el códiogo sin "- pantalla.offsetLeft, a pesar de que el clic sólo lo está reconociendo al hacelo en el Canvas, las coordenadas que obtiene son de toda la pantalla en general, entonces "offsetLetf" nos permite restar el espacio sobrante de la izquierda en relación al Canvas
+         */
+        let x = evento.pageX - pantalla.offsetLeft;
+        let y = evento.pageY - pantalla.offsetTop;
+        console.log(evento);
+        alert(x + "," + y);
+    }
+
+    function DibujarCirculo(evento) {
+        let x = evento.pageX - pantalla.offsetLeft;
+        let y = evento.pageY - pantalla.offsetTop;
+
+        pincel.fillStyle = "blue";
+        pincel.beginPath();
+        pincel.arc(x, y, 10, 0, 2 * 3.1416) //(posX, posY, radio, anguloInicial, anguloFinal * 2.1416)
+        pincel.fill();
+    
+        console.log(x + "," + y);
+    }
+
+    // pantalla.onclick = MostrarAlerta;
+    pantalla.onclick = DibujarCirculo;
+</script>

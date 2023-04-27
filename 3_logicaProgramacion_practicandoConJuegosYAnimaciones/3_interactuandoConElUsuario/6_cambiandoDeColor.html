@@ -1,0 +1,48 @@
+<meta charset="utf-8">
+
+<canvas width="600" height="400"></canvas> <br>
+
+<!-- Es una etiqueta que nos servirá como pizarra para trazar gráficos, illustraciones, etc -->
+<script>
+    let pantalla = document.querySelector("canvas");
+    let pincel = pantalla.getContext("2d");
+
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0, 0, 600, 400);
+
+    let colores = ["blue", "red", "green"];
+    let indiceColorActual = 0; // Comienza con blue
+
+
+    function MostrarAlerta(evento) {
+        let x = evento.pageX - pantalla.offsetLeft;
+        let y = evento.pageY - pantalla.offsetTop;
+        console.log(evento);
+        alert(x + "," + y);
+    }
+
+    function DibujarCirculo(evento) {
+        let x = evento.pageX - pantalla.offsetLeft;
+        let y = evento.pageY - pantalla.offsetTop;
+
+        pincel.fillStyle = colores[indiceColorActual];
+        pincel.beginPath();
+        pincel.arc(x, y, 10, 0, 2 * 3.1416);
+        pincel.fill();
+
+        console.log(x + "," + y);
+    }
+
+    pantalla.onclick = DibujarCirculo;
+
+    function CambiarColor() {
+
+        indiceColorActual++;
+        if(indiceColorActual >=colores.length){
+            indiceColorActual = 0; //Vuelve al primer color, blue
+        }
+        // alert("Cambió a color " + indiceColorActual);
+        return false; // Evitamos que se abran las herramientas al dar clic derecho
+    }
+    pantalla.oncontextmenu = CambiarColor; //oncontextmenu nos detecta el clic derecho
+</script>

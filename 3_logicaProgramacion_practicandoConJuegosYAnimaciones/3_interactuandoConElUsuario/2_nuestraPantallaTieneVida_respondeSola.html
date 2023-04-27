@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+
+<canvas width="600" height="400"></canvas> <!-- Es una etiqueta que nos servirá como pizarra para trazar gráficos, illustraciones, etc -->
+<script>
+    let pantalla = document.querySelector("canvas");
+    let pincel = pantalla.getContext("2d"); 
+
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0, 0, 600, 400);
+
+
+    function MostrarAlerta(evento){ //con est parámetro, traemos la info del evento del mouse (MouseEvent), podemos ver la posición del clic enter otras cosas || el nombre del parámetor puede ser el que sea
+        console.log(evento); // mostramos en consola la info obtenida del MouseEvent
+        alert("Usted hizo clic");
+    }    
+
+    pantalla.onclick = MostrarAlerta;
+
+    
+
+</script>
