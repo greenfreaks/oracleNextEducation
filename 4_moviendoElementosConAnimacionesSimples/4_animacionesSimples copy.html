@@ -1,0 +1,41 @@
+<!-- En este ejercio, mediante una animación sencilla crearemos el efecto de que el circulo va avanzando desde el inicio del canvas hasta el final de manera horizontal
+    * En relidad lo que estará pasando es que el circulo se borrará y aparecerá de nuevo en una posición más adelante de manera continua, y con esto conseguiremos el efecto de que avanza
+-->
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 0, 600, 400);
+
+    function disenarCircunferencia(x, y, radio){
+        pincel.fillStyle = "blue";
+        pincel.beginPath();
+        pincel.arc(x, y, radio, 0, 2*Math.PI); //Math.PI es igual a escribir 3.14
+        pincel.fill();
+    }
+
+
+
+    // Función para borrar la pantalla
+    function limpiarPantalla(){
+        pincel.clearRect(0, 0, 600, 400); 
+    }
+
+    //Creamos un contador (esta x se refiere a la posición horizontal)
+    var x = 0;
+
+    //Función principal
+    function actualizarPantalla(){
+        limpiarPantalla();
+        disenarCircunferencia(x, 20, 10);
+        x++;
+    }
+    // Decimos que se repita la función actualizar pantalla cada determinado tiempo
+    setInterval(actualizarPantalla, 100); 
+    
+
+
+
+</script>

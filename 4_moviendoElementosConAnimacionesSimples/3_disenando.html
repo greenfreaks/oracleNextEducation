@@ -1,0 +1,25 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 0, 600, 400);
+
+    function disenarCircunferencia(x, y, radio){
+        pincel.fillStyle = "blue";
+        pincel.beginPath();
+        pincel.arc(x, y, radio, 0, 2*Math.PI); //Math.PI es igual a escribir 3.14
+        pincel.fill();
+    }
+
+    function limpiarPantalla(){
+        pincel.clearRect(0, 0, 600, 400); // Esta función sirve para borrar, como parámetros pide lo mismo que la función fillRect
+    }
+     
+    disenarCircunferencia(x, 20, 10);
+    
+
+
+
+</script>
