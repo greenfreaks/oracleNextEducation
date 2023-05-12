@@ -1,0 +1,105 @@
+<!-- 
+    1. En ese ejercicio se le permte al usuario dibujar de manera continua mientras tenga apretado el clic izquierdo
+    2. El usuario podrá cambiar entre los colores que quiere elegir para dibujar
+    3. El usuario no podrá dibujar en el área de la paleta de colores 
+-->
+<h1>Dibuja en el área gris manteniendo el clic izquierdo pulsado</h1>
+<h3>Puedes cambiar el color del pincel dando clic en los recuadros de colores que encuentran en la parde superior del área de dibujo</h3>
+<canvas width="600" height="400"></canvas>
+<script>
+    //Pizarrón
+    let pizarron = document.querySelector("canvas");
+    let pincel = pizarron.getContext("2d");
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 0, 600, 400);
+
+    var puedoDibujar = false;
+
+    //Variablles para dibujar la paleta
+    let xRojo = 0;
+    let xVerde = 50;
+    let xAzul = 100;
+    let yCuadros = 0;
+    let tamanoCuadros = 50;
+    let colorActual = "blue"
+
+
+    function dibujarCirculo(x, y, colorActual) {
+        if (puedoDibujar) {
+
+            pincel.fillStyle = colorActual;
+            pincel.beginPath();
+            pincel.arc(x, y, 5, 0, 2 * Math.PI);
+            pincel.fill();
+        }
+    }
+
+    //Función para dibujar cada uno de los cuadros de la paleta
+    function dibujarCuadro(x, y, tamano, color) {
+        pincel.fillStyle = color;
+        pincel.fillRect(x, y, tamano, tamano)
+        pincel.fill();
+    }
+
+    // Función para dibujar la paleta de colores
+    function dibujarPaletaColores() {
+        dibujarCuadro(xRojo, yCuadros, tamanoCuadros, 'red');
+        dibujarCuadro(xVerde, yCuadros, tamanoCuadros, 'green');
+        dibujarCuadro(xAzul, yCuadros, tamanoCuadros, 'blue');
+    }
+
+    function habilitarDibujar() {
+        puedoDibujar = true;
+    }
+
+    function deshabilitarDibujar() {
+        puedoDibujar = false;
+    }
+
+    // Función para delimintar el área donde el usuario puede pintar (el usuario no debe de poder pintar en el área donde está la paleta de colores)
+    function puedeDisenarArea(xCoordenada, yCoordenada) {
+        if ((xCoordenada >= 0 && xCoordenada < (3 * tamanoCuadros + 5)) &&
+            (yCoordenada >= 0 && yCoordenada < (tamanoCuadros + 5))) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function capturarMovimientoDelMouse(evento) {
+        var x = evento.pageX - pizarron.offsetLeft;
+        var y = evento.pageY - pizarron.offsetTop;
+
+        if (puedeDisenarArea(x, y)) {
+            dibujarCirculo(x, y, colorActual);
+        }
+    }
+
+    function seleccionarColor(evento) {
+        let x = evento.pageX - pizarron.offsetLeft;
+        let y = evento.pageY - pizarron.offsetTop;
+
+        // Cada condición altera el color de la variable colorActual
+
+        // Comenzamos por la condición del eje Y que es común para todas
+        if (x > xRojo && x < (xRojo + tamanoCuadros)) {
+            colorActual = "red";
+            console.log(colorActual);
+        } else if (x > xVerde && x < (xVerde + tamanoCuadros)) {
+            colorActual = "green";
+            console.log(colorActual);
+        } else if (x > xAzul && x < (xAzul + tamanoCuadros)) {
+            colorActual = "blue";
+            console.log(colorActual);
+        }
+        
+    }
+
+    pizarron.onmousemove = capturarMovimientoDelMouse;
+    pizarron.onmousedown = habilitarDibujar;
+    pizarron.onmouseup = deshabilitarDibujar;
+
+    dibujarPaletaColores();
+
+    pizarron.onclick = seleccionarColor;
+</script>
